@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="format-detection" content="telephone=no">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>Penta bits to ABC</title>
+  <style type="text/css">
+  <!--
+  * { font-family: monospace; }
+  -->
+  </style>
+	<script type="text/javascript" charset="utf-8">
+	
+// 5bitを2桁の10進数にする
+function pentabin2Num(str) {
+  str=str.trim();
+  var result=[];
+  if(!str.match(/^([01]{5}\s*)+$/)){
+    return null;
+  }
+  var myList=str.match(/[01]{5}/g);
+  for (var i in myList) {
+    var tmp=parseInt("000"+myList[i],2).toString(10);
+    // [ 5bit, 数字 ] のリストを返す
+    result.push([myList[i],("0"+tmp).slice(-2)]);
+  }
+  return result;
+}
+
+function numstrToAZ1(str) {
+  var alphabet = "abcdefghijklmnopqrstuvwxyz";
+  var result = "";
+  str = str.trim();
+  while (str.length > 0) {
+    if (!str.match(RegExp("^(1[0-9]|2[0-6]|0?[1-9])([^0-9]?)"))) {
+      return null;
+    }
+    var substr = RegExp.$1;
+    str = str.substr(substr.length + RegExp.$2.length);
+    result += alphabet[substr - 1];
+  }
+  return result;
+}
+
+
+// -------------------------------------------------------
+
+
+
+
+function main(str) {
+      
+  var result=[];
+  var result1=[];
+  var result2=[];
+  var targetElm=document.getElementById('resultString');
+	var tmp=pentabin2Num(str);
+	
+  for (var j in tmp) {
+    if (tmp[j][0]) {
+      result.push(tmp[j][0]+": "+tmp[j][1]);
+      result1.push(tmp[j][0]);
+      result2.push(tmp[j][1]);
+    }
+  }
+  
+  targetElm.value=result.join("\n");
+  targetElm.value+="\n";
+  targetElm.value+="\n*** Result ***";
+  targetElm.value+="\n"+result2.join(" ");
+  targetElm.value+="\n";
+  targetElm.value+="\n***Result to 123toAZ ***"
+  targetElm.value+="\n"+numstrToAZ1(result2.join(" "));
+  targetElm.value+="\n";
+  targetElm.value+="\n*** Join ***";
+  targetElm.value+="\n"+result2.join("");
+  targetElm.value+="\n";
+
+
+}
+
+  
+	</script>
+</head>
+<body>
+	<h1>Roman Numerals Exchange</h1>
+	<div>
+	  <h3>enter Roman Numerals</h3>
+	  <input type="text" id="inputBin" value="" style="width: 90%" onchange="main(this.value)" onautofocus>
+	  <input type="button" value="exchange" onClick="main(document.getElementById('inputBin').value)"><br>
+    <span style="font-sze: 50%"> </span>
+
+	</div>
+	<div>
+    <h3>result strings</h3>
+    <textarea id="resultString" style="width: 90%" rows=30 style="font-family: monospace; font-size: 100%" readonly></textarea><br>
+    <span style="font-size: 70%">
+    </span>
+	</div>
+</body>
+</html>
