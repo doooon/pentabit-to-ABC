@@ -47,7 +47,7 @@ function numstrToAZ1(str) {
 
 
 function swapbin(str) {
-  if(!str.match(/^[01]+$/){
+  if(!str.match(/^[01\s]+$/){
     return null;
   }
   return str.replace(/0/g, "2").replace(/1/g, "0").replace(/2/g, "1");
