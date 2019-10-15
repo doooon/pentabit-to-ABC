@@ -45,14 +45,14 @@ function numstrToAZ1(str) {
   return result;
 }
 
-/*
+
 function swapbin(str) {
   if(!str.match(/^[01]+$/){
     return null;
   }
   return str.replace(/0/g, "2").replace(/1/g, "0").replace(/2/g, "1");
 }
-*/
+
 
 
 // -------------------------------------------------------
@@ -66,12 +66,12 @@ function main(str) {
   var result1=[];
   var result2=[];
   var targetElm=document.getElementById('resultString');
-/*
+
   var swaped=document.getElementById("swap").checked;
   if(swaped){
     str=swapbin(str);
   }
-*/
+
   var tmp=pentabin2Num(str);
 	
   for (var j in tmp) {
