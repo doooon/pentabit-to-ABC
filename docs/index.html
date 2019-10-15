@@ -64,8 +64,11 @@ function main(str) {
   var result1=[];
   var result2=[];
   var targetElm=document.getElementById('resultString');
-  var swap_elem=document.getElementById("swap");
-	var tmp=pentabin2Num(str);
+  var swap=document.getElementById("swap").checked;
+  if(swap){
+    str=swapbin(str);
+  }
+  var tmp=pentabin2Num(str);
 	
   for (var j in tmp) {
     if (tmp[j][0]) {
