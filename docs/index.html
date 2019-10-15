@@ -46,10 +46,24 @@ function numstrToAZ1(str) {
 }
 
 
+function to123ABC(str) {
+  var alphabet="_ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var result="";
+  var myList=str.split(/\s+/);
+  for (i in myList) {
+    if (! myList[i].match(RegExp("^(1[0-9]|2[0-6]|0?[1-9])"))) {
+      result+="∎";
+      contine;
+    }
+    result+=alphabet[myList[i]];
+  }
+  return result;
+}
+
+
+
+
 function swapbin(str) {
-  /*if(!str.match(/[01]/){
-    return str;
-  }*/
   return str.replace(/0/g, "\0").replace(/1/g, "0").replace(/\0/g, "1");
 }
 
@@ -90,6 +104,11 @@ function main(str) {
   targetElm.value+="\n***Result to 123toAZ ***"
   targetElm.value+="\n"+numstrToAZ1(result2.join(" "));
   targetElm.value+="\n";
+
+  targetElm.value+="\n***Result to to123ABC ***"
+  targetElm.value+="\n"+to123ABC(result2.join(" "));
+  targetElm.value+="\n";
+
   targetElm.value+="\n*** Join ***";
   targetElm.value+="\n"+result2.join("");
   targetElm.value+="\n";
