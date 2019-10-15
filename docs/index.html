@@ -51,7 +51,7 @@ function to123ABC(str) {
   var result="";
   var myList=str.split(/\s+/);
   for (i in myList) {
-    //debug.push(myList[i]+"="+ parseInt(myList[i]).toString(10));
+    debug.push(myList[i]+"="+ parseInt(myList[i]).toString(10));
     if (! myList[i].match(RegExp("^(1[0-9]|2[0-6]|0?[1-9])"))) {
       result+="∎";
       contine;
@@ -73,10 +73,9 @@ function swapbin(str) {
 // -------------------------------------------------------
 
 
-
+var debug=[];
 
 function main(str) {
-  var debug=[];
   var result=[];
   var result1=[];
   var result2=[];
